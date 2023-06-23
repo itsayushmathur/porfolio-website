@@ -11,14 +11,14 @@ const HeaderSocials = () => {
         target="_blank"
         rel="noreferrer"
       >
-        <BsLinkedin />
+        <FaGithub />
       </a>
       <a
         href="https://www.linkedin.com/in/itsayushmathur/"
         target="_blank"
         rel="noreferrer"
       >
-        <FaGithub />
+        <BsLinkedin/>
       </a>
       <a
         href="https://www.instagram.com/itsayushmathur/"
@@ -27,13 +27,13 @@ const HeaderSocials = () => {
       >
         <AiFillInstagram />
       </a>
-      <a
+      {/* <a
         href="https://www.facebook.com/AbstergoCaelum/"
         target="_blank"
         rel="noreferrer"
       >
         <BsFacebook />
-      </a>
+      </a> */}
     </div>
   );
 };
