@@ -5,7 +5,6 @@ import Nav from "./nav/Nav";
 import Footer from "./footer/Footer";
 import Portfolio from "./portfolio/Portfolio";
 import Experience from "./experience/Experience";
-import Testimonials from "./testimonials/Testimonials";
 import Services from "./services/Services";
 import Contact from "./contact/Contact";
 const App = () => {
@@ -17,7 +16,6 @@ const App = () => {
       <Experience />
       <Services />
       <Portfolio />
-      <Testimonials />
       <Contact />
       <Footer />
     </>
