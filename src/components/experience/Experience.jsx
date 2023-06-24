@@ -81,7 +81,7 @@ const Experience = () => {
             </article>
           </div>
         </div>
-        <div className="experience__backend">
+        <div className="experience__deployment">
           <h3>Deployment</h3>
           <div className="experience__content">
             <article className="experience__details">
@@ -89,6 +89,19 @@ const Experience = () => {
               <div className="experience__details-content">
                 <h4>Netlify Hosting</h4>
                 <small className="text-light">Beginner</small>
+              </div>
+            </article>
+            
+          </div>
+        </div>
+        <div className="experience__miscellaneous">
+          <h3>Miscellaneous</h3>
+          <div className="experience__content">
+            <article className="experience__details">
+              <BsPatchCheckFill className="experience__details-icon" />
+              <div className="experience__details-content">
+                <h4>Digital Art</h4>
+                <small className="text-light">Intermediate</small>
               </div>
             </article>
             
