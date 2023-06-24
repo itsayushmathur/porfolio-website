@@ -22,14 +22,14 @@ const Experience = () => {
               <BsPatchCheckFill className="experience__details-icon" />
               <div className="experience__details-content">
                 <h4>HTML</h4>
-                <small className="text-light">Experienced</small>
+                <small className="text-light">Intermediate</small>
               </div>
             </article>
             <article className="experience__details">
               <BsPatchCheckFill className="experience__details-icon" />
               <div className="experience__details-content">
                 <h4>JavaScript</h4>
-                <small className="text-light">Experienced</small>
+                <small className="text-light">Intermediate</small>
               </div>
             </article>
             <article className="experience__details">
@@ -79,6 +79,19 @@ const Experience = () => {
                 <small className="text-light">Beginner</small>
               </div>
             </article>
+          </div>
+        </div>
+        <div className="experience__backend">
+          <h3>Deployment</h3>
+          <div className="experience__content">
+            <article className="experience__details">
+              <BsPatchCheckFill className="experience__details-icon" />
+              <div className="experience__details-content">
+                <h4>Netlify Hosting</h4>
+                <small className="text-light">Beginner</small>
+              </div>
+            </article>
+            
           </div>
         </div>
       </div>
