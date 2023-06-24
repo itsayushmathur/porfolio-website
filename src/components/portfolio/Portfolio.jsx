@@ -11,7 +11,7 @@ const data = [
     image: TAMSimg,
     title: "T A M S",
     github: "https://github.com/itsayushmathur/TAMS",
-    demo: "",
+    demo: "https://talentams.netlify.app",
     description:
       "TAMS (Talent Allocation Management System) is a React.js-based project that streamlines talent allocation and management processes within organizations. It offers a user-friendly interface for HR managers and project leads to efficiently search for suitable resources based on skills and availability. TAMS enhances resource allocation, project efficiency, and overall productivity in organizations.",
   },
