@@ -3,6 +3,7 @@ import "./header.css";
 import CTA from "./CTA";
 import ME from "../../assets/me.png";
 import HeaderSocials from "./HeaderSocials";
+import BMC from "./BMC"; 
 
 const Header = () => {
   return (
@@ -16,6 +17,7 @@ const Header = () => {
         <div className="me">
           <img src={ME} alt="me" />
         </div>
+        <BMC />
       </div>
       <a href="#contact" className="scroll__down">
         Scroll Down

@@ -1,0 +1,7 @@
+.bmc-button {
+    position: fixed;
+    top: 20px; /* Adjust the top value as per your preference */
+    right: 20px; /* Adjust the right value as per your preference */
+    z-index: 9999;
+  }
+  
