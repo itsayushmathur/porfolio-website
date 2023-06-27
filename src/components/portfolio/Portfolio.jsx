@@ -4,16 +4,27 @@ import WonderStudyimg from "../../assets/portfolio1.jpg";
 import RTOimg from "../../assets/portfolio2.jpg";
 import Vaultimg from "../../assets/portfolio3.jpg";
 import TAMSimg from "../../assets/portfolio4.jpg";
+import TWMimg from "../../assets/portfolio5.jpg";
+
 
 const data = [
   {
-    id: 4,
+    id: 1,
     image: TAMSimg,
     title: "T A M S",
     github: "https://github.com/itsayushmathur/TAMS",
     demo: "https://talentams.netlify.app",
     description:
       "TAMS (Talent Allocation Management System) is a React.js-based project that streamlines talent allocation and management processes within organizations. It offers a user-friendly interface for HR managers and project leads to efficiently search for suitable resources based on skills and availability. TAMS enhances resource allocation, project efficiency, and overall productivity in organizations.",
+    },
+  {
+    id: 2,
+    image: TWMimg,
+    title: "Travel With Me",
+    github: "https://github.com/itsayushmathur/Travel-With-Me",
+    demo: "https://twmagency.netlify.app/",
+    description:
+    "Travel With Me is a dynamic web application designed to enhance the travel experience. The integration of EmailJS ensures seamless communication between users and the site owners, allowing for easy inquiries and feedback. Built using React, EmailJS, and Tailwind CSS, Travel With Me offers a responsive design, making it accessible and enjoyable across different devices.",
   },
   {
     id: 3,
@@ -22,10 +33,10 @@ const data = [
     github: "https://github.com/itsayushmathur/WonderStudy-Course_Management",
     demo: "https://github.com/itsayushmathur/WonderStudy-Course_Management",
     description:
-      "WonderStudy is an application program developed in Java, utilizing Swing and AWT, designed to facilitate efficient management of courses, faculty, and students for educational institutes. The project involves creating a user-friendly interface for administrators, teachers, and students to manage course enrollment, track student progress, and generate reports.",
+    "WonderStudy is an application program developed in Java, utilizing Swing and AWT, designed to facilitate efficient management of courses, faculty, and students for educational institutes. The project involves creating a user-friendly interface for administrators, teachers, and students to manage course enrollment, track student progress, and generate reports.",
   },
   {
-    id: 1,
+    id: 4,
     image: RTOimg,
     title: "RTO",
     github:
@@ -35,7 +46,7 @@ const data = [
       "Regional Transport Office Management is a Java application that provides various transport-related services, including driving license applications, vehicle registration, and management. The project utilizes Java programming concepts and database connectivity to create a comprehensive system that streamlines the process of managing and tracking transportation-related activities.",
   },
   {
-    id: 2,
+    id: 5,
     image: Vaultimg,
     title: "The Vault",
     github: "https://github.com/itsayushmathur/The_Vault.github.io",
