@@ -11,12 +11,12 @@
 }
 
 :root {
-  --color-bg: #35482b;
-  --color-bg-variant: #4c633f;
-  --color-primary: #a3c98a;
-  --color-primary-variant: rgba(163, 201, 138, 0.4);
-  --color-white: #fff;
-  --color-light: rgba(255, 255, 255, 0.6);
+  --color-bg: #1e1e2f;               /* Deep navy for a sophisticated background */
+  --color-bg-variant: #2d2d44;        /* Slightly lighter variant for cards/sections */
+  --color-primary: #7f5af0;           /* Vibrant violet for highlights */
+  --color-primary-variant: rgba(127, 90, 240, 0.4); /* Subtle variant for hover effects */
+  --color-white: #f5f5f5;             /* Soft white for text */
+  --color-light: rgba(245, 245, 245, 0.7); /* Muted white for secondary text */
 
   --transition: all 400ms ease;
 
@@ -24,6 +24,7 @@
   --container-width-md: 86%;
   --container-width-sm: 90%;
 }
+
 
 html {
   scroll-behavior: smooth;
@@ -35,11 +36,21 @@ html {
 
 body {
   font-family: "Poppins", sans-serif;
-  background: var(--color-bg);
-  color: var(--color-white);
+  background: var(--color-bg); /* Deep navy background */
+  color: var(--color-white);   /* Soft white text for contrast */
   line-height: 1.7;
-  background-image: url(../src/assets/bg-texture.png);
+  
+  /* Subtle texture with gradient overlay for depth */
+  background-image: 
+    linear-gradient(135deg, rgba(127, 90, 240, 0.1) 0%, rgba(30, 30, 47, 0.9) 100%),
+    url(../src/assets/bg-texture.png);
+  background-blend-mode: overlay;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  transition: background 0.4s ease;
 }
+
 
 /*==================== GENERAL STYLES====================*/
 .container {

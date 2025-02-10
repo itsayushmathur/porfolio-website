@@ -1,162 +1,215 @@
 import React from "react";
-import "./services.css";
+import styled from "styled-components";
 import { BiCheck } from "react-icons/bi";
+
+// Styled Components
+const ServicesSection = styled.section`
+  padding: 2rem 6rem;
+  ${'' /* background: var(--color-bg); */}
+  color: var(--color-light);
+  text-align: center;
+`;
+
+const SectionHeader = styled.div`
+  margin-bottom: 3rem;
+
+  h5 {
+    font-size: 1.3rem;
+    color: var(--color-primary);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  h2 {
+    font-size: 2.5rem;
+    color: var(--color-white);
+    margin-top: 0.5rem;
+  }
+`;
+
+const ServicesContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+  }
+`;
+
+const ServiceCard = styled.article`
+  background: var(--color-bg-variant);
+  padding: 2rem;
+  border-radius: 1.5rem;
+  border: 2px solid transparent;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+  &:hover {
+    background: var(--color-dark);
+    transform: translateY(-8px);
+    border-color: var(--color-primary);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+  }
+`;
+
+const ServiceHead = styled.div`
+  background: var(--color-primary);
+  padding: 1.5rem;
+  border-radius: 1rem 1rem 0 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+
+  h3 {
+    color: var(--color-white);
+    ${'' /* font-size: 1.5rem; */}
+    ${'' /* font-weight: bold; */}
+    letter-spacing: 0.5px;
+  }
+`;
+
+const ServiceList = styled.ul`
+  padding: 1.5rem;
+  list-style: none;
+  text-align: left;
+`;
+
+const ServiceItem = styled.li`
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateX(5px);
+  }
+
+  p {
+    font-size: 1rem;
+    line-height: 1.5;
+    color: var(--color-light);
+  }
+
+  strong {
+    color: var(--color-primary);
+    font-weight: 600;
+  }
+`;
+
+const ServiceIcon = styled(BiCheck)`
+  color: var(--color-primary);
+  margin-top: 4px;
+  font-size: 1.5rem;
+`;
+
 const Services = () => {
   return (
-    <section id="services">
-      <h5>What I Offer</h5>
-      <h2>Services</h2>
-      <div className="container services__container">
-        <article className="service">
-          <div className="service__head">
-            <h3>Web Development Services</h3>
-          </div>
-          <ul className="service__list">
-            <li>
-              <BiCheck className="service__list-icon" />
+    <ServicesSection id="services">
+      {/* <SectionHeader> */}
+        <h5>What I Offer</h5>
+        <h2>Services</h2>
+      {/* </SectionHeader> */}
+
+      <ServicesContainer>
+        {/* Frontend Development Services */}
+        <ServiceCard>
+          <ServiceHead>
+            <h3>Frontend Development</h3>
+          </ServiceHead>
+          <ServiceList>
+            <ServiceItem>
+              <ServiceIcon />
               <p>
-                <h3>Create Powerful Websites</h3>
-                You deserve a well-designed website that serves as a powerful
-                marketing and communication tool. Let me help you build a
-                website that builds trust, generates leads, and effectively
-                communicates your message to your target audience. Together, we
-                can make your online presence shine.
+                <strong>Responsive Web Applications:</strong> I develop
+                scalable, mobile-responsive applications using React.js for
+                seamless performance.
               </p>
-            </li>
-            <li>
-              <BiCheck className="service__list-icon" />
+            </ServiceItem>
+            <ServiceItem>
+              <ServiceIcon />
               <p>
-                <h3>Unlock Ecommerce Opportunities</h3>
-                With my expertise in web development, I can provide eCommerce
-                solutions that enable your business to operate 24/7 and reach
-                customers across different time zones. Expand your business
-                horizons and tap into the vast potential of online selling. I'll
-                guide you through the process and help you maximize your online
-                sales.
+                <strong>Optimized Performance:</strong> I focus on performance
+                optimization, reducing load times, and enhancing user
+                engagement.
               </p>
-            </li>
-            <li>
-              <BiCheck className="service__list-icon" />
+            </ServiceItem>
+            <ServiceItem>
+              <ServiceIcon />
               <p>
-                <h3>Create Engaging Web Applications</h3>
-                Web applications have the power to reach a global audience and
-                captivate users with their interactive and engaging nature.
-                Partner with me to develop web applications that not only grab
-                users' attention but also provide seamless user experiences.
-                Together, we'll create web applications that leave a lasting
-                impact.
+                <strong>Custom Dashboard Development:</strong> Experienced in
+                building data-driven dashboards, integrating Power BI reports
+                for centralized insights.
               </p>
-            </li>
-            <li>
-              <BiCheck className="service__list-icon" />
+            </ServiceItem>
+          </ServiceList>
+        </ServiceCard>
+
+        {/* UI/UX Design Services */}
+        <ServiceCard>
+          <ServiceHead>
+            <h3>UI/UX Design</h3>
+          </ServiceHead>
+          <ServiceList>
+            <ServiceItem>
+              <ServiceIcon />
               <p>
-                <h3>
-                  Optimize Workflows with a Content Management System (CMS)
-                </h3>
-                Your business deserves a dedicated CMS tailored to its specific
-                needs, saving you valuable time and money by optimizing internal
-                workflows. With my expertise in web development, I can create a
-                custom CMS solution that streamlines your content management
-                processes. Let's boost your productivity and efficiency
-                together.
+                <strong>Modern User Interfaces:</strong> Clean, intuitive UIs
+                with Tailwind CSS & Material-UI for vibrant, responsive layouts.
               </p>
-            </li>
-          </ul>
-        </article>
-        <article className="service">
-          <div className="service__head">
-            <h3>Digital Art Services</h3>
-          </div>
-          <ul className="service__list">
-            <li>
-              <BiCheck className="service__list-icon" />
+            </ServiceItem>
+            <ServiceItem>
+              <ServiceIcon />
               <p>
-                <h3>Create Stunning Illustrations</h3>
-                You deserve captivating illustrations that bring your projects
-                to life. With my expertise in digital art, I can craft unique
-                and visually engaging illustrations for your books, magazines,
-                advertisements, and more. Let me help you make a lasting
-                impression.
+                <strong>Mobile-First Design:</strong> Building apps that adapt
+                flawlessly to all screen sizes for consistent user experiences.
               </p>
-            </li>
-            <li>
-              <BiCheck className="service__list-icon" />
+            </ServiceItem>
+            <ServiceItem>
+              <ServiceIcon />
               <p>
-                <h3>Design Memorable Logos</h3>
-                Your brand deserves a logo that stands out from the crowd. As a
-                digital art specialist, I can create visually appealing and
-                impactful logos that represent your business's identity. Let's
-                work together to design a logo that leaves a lasting impression
-                on your audience.
+                <strong>Interactive Prototypes:</strong> Developing prototypes
+                to visualize workflows, aiding product functionality before
+                development.
               </p>
-            </li>
-            <li>
-              <BiCheck className="service__list-icon" />
+            </ServiceItem>
+          </ServiceList>
+        </ServiceCard>
+
+        {/* Digital Art Services */}
+        <ServiceCard>
+          <ServiceHead>
+            <h3>Digital Art & Design</h3>
+          </ServiceHead>
+          <ServiceList>
+            <ServiceItem>
+              <ServiceIcon />
               <p>
-                <h3>Bring Ideas to Life with Digital Sketches</h3>
-                You have unique concepts that need to be brought to life.
-                Through the power of digital sketching, I can transform your
-                ideas into captivating visuals. With an array of digital tools
-                and techniques at my disposal, I'll create sketches and concept
-                art that exceed your expectations.
+                <strong>Sketching & Illustrations:</strong> Creating unique
+                visuals that blend creativity with technical precision.
               </p>
-            </li>
-            <li>
-              <BiCheck className="service__list-icon" />
+            </ServiceItem>
+            <ServiceItem>
+              <ServiceIcon />
               <p>
-                <h3>Elevate Your Brand with Graphic Design</h3>
-                Your brand deserves exceptional graphic designs that leave a
-                lasting impact. With my expertise in digital art, I can design
-                visually appealing and engaging graphics for your branding,
-                packaging, and marketing materials. Let's collaborate to create
-                designs that resonate with your target audience.
+                <strong>Custom Graphic Designs:</strong> Designing engaging
+                graphics to enhance brand identity and storytelling.
               </p>
-            </li>
-          </ul>
-        </article>
-        <article className="service">
-          <div className="service__head">
-            <h3>Software Development Services</h3>
-          </div>
-          <ul className="service__list">
-            <li>
-              <BiCheck className="service__list-icon" />
+            </ServiceItem>
+            <ServiceItem>
+              <ServiceIcon />
               <p>
-                <h3>Create Custom Backend Solutions</h3>
-                You need intelligent and targeted backend solutions for your
-                complex web and mobile interfaces. With my expertise in software
-                development, I can craft bespoke backend solutions to store,
-                process, and manage data from various sources. Let me help you
-                build a robust foundation for your applications.
+                <strong>Creative UI Elements:</strong> Adding artistic elements
+                to web apps for visually appealing yet functional designs.
               </p>
-            </li>
-            <li>
-              <BiCheck className="service__list-icon" />
-              <p>
-                <h3>Enhance Your Interfaces with Powerful Backend Features</h3>
-                Your applications deserve powerful extensions that elevate user
-                experience. As a software developer, I can add analytical
-                tracking, push notifications, and cloud-based databases to your
-                interfaces. Get ready to provide a seamless user experience with
-                robust backend engines.
-              </p>
-            </li>
-            <li>
-              <BiCheck className="service__list-icon" />
-              <p>
-                <h3>Efficiently Store and Scale Cloud-Based Data</h3>
-                Scaling your cloud-computing services requires high-performing
-                backend applications. With my expertise in software development,
-                I can create data storage backend apps that efficiently store
-                relatable data in cloud-based distributed database systems.
-                Let's ensure your applications scale seamlessly while
-                maintaining data integrity.
-              </p>
-            </li>
-          </ul>
-        </article>
-      </div>
-    </section>
+            </ServiceItem>
+          </ServiceList>
+        </ServiceCard>
+      </ServicesContainer>
+    </ServicesSection>
   );
 };
 
