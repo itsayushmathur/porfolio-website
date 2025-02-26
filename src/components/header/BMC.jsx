@@ -12,7 +12,7 @@ const BMC = () => {
       <img
         src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png"
         alt="Buy Me A Coffee"
-        style={{ height: "32px", width: "135px" }}
+        // style={{ height: "32px", width: "135px" }}
       />
     </a>
   );

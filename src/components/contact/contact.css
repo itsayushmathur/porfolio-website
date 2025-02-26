@@ -82,6 +82,7 @@ textarea {
 input:hover,
 textarea:hover {
   background: var(--color-primary);
+  opacity: 0.8;
   color: var(--color-bg);
 }
 

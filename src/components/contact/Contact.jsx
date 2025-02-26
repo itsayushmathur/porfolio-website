@@ -1,24 +1,57 @@
-import React, { useRef } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import "./contact.css";
 import { MdOutlineEmail } from "react-icons/md";
 import { BsWhatsapp } from "react-icons/bs";
 import { RiTelegramLine } from "react-icons/ri";
 import emailjs from "@emailjs/browser";
+import Snackbar from "@mui/material/Snackbar";
+import Alert from "@mui/material/Alert";
+import CircularProgress from "@mui/material/CircularProgress";
 
 const Contact = () => {
   const form = useRef();
+  const [shouldSend, setShouldSend] = useState(false);
+  const [alertOpen, setAlertOpen] = useState(false);
+  const [alertMessage, setAlertMessage] = useState("");
+  const [alertSeverity, setAlertSeverity] = useState("success");
+  const [loading, setLoading] = useState(false);
 
   const sendEmail = (e) => {
     e.preventDefault();
+    setLoading(true);
+    setShouldSend(true);
+  };
 
-    emailjs
-      .sendForm(
-        'service_h84lqco',
-        'template_navms9p',
-        form.current,
-        'orJMVLhh2DhgCaWkU'
-      )
-      e.target.reset()
+  useEffect(() => {
+    if (shouldSend) {
+      emailjs
+        .sendForm(
+          "service_d5tntf5",
+          "template_navms9p",
+          form.current,
+          "orJMVLhh2DhgCaWkU"
+        )
+        .then((result) => {
+          setAlertMessage("Message sent successfully!");
+          setAlertSeverity("success");
+          setAlertOpen(true);
+          form.current.reset();
+          setLoading(false);
+          setShouldSend(false);
+        })
+        .catch((error) => {
+          setAlertMessage("Failed to send message. Please try again.");
+          setAlertSeverity("error");
+          setAlertOpen(true);
+          setLoading(false);
+          setShouldSend(false);
+        });
+    }
+  }, [shouldSend]);
+
+  const handleAlertClose = (event, reason) => {
+    if (reason === "clickaway") return;
+    setAlertOpen(false);
   };
 
   return (
@@ -80,11 +113,43 @@ const Contact = () => {
             placeholder="Your Message"
             required
           ></textarea>
-          <button type="submit" className="btn btn-primary">
-            Send Message
+          <button type="submit" className="btn btn-primary" disabled={loading}>
+            {loading ? (
+              <CircularProgress size={24} style={{ color: "#fff" }} />
+            ) : (
+              "Send Message"
+            )}
           </button>
         </form>
       </div>
+
+      <Snackbar
+        open={alertOpen}
+        autoHideDuration={6000}
+        onClose={handleAlertClose}
+        anchorOrigin={{ vertical: "top", horizontal: "center" }}
+        sx={{
+          "& .MuiSnackbarContent-root": {
+            backgroundColor:
+              alertSeverity === "success" ? "#4caf50" : "#f44336",
+            color: "#fff",
+            fontSize: "1rem",
+          },
+        }}
+      >
+        <Alert
+          onClose={handleAlertClose}
+          severity={alertSeverity}
+          variant="filled"
+          sx={{
+            width: "100%",
+            fontSize: "1rem",
+            borderRadius: "2rem",
+          }}
+        >
+          {alertMessage}
+        </Alert>
+      </Snackbar>
     </section>
   );
 };

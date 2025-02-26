@@ -3,13 +3,14 @@ header {
   padding-top: 7rem;
   overflow: hidden;
 }
+
 .header_container {
   text-align: center;
   position: relative;
   height: 100%;
 }
 
-/*===============CTA============== */
+/* CTA */
 .cta {
   margin-top: 2.5rem;
   display: flex;
@@ -17,7 +18,7 @@ header {
   justify-content: center;
 }
 
-/*===============HEADER SOCIALS============== */
+/* HEADER SOCIALS */
 .header_socials {
   display: flex;
   flex-direction: column;
@@ -35,7 +36,7 @@ header {
   background: var(--color-primary);
 }
 
-/* ======== ME ==============*/
+/* ME */
 .me {
   background: linear-gradient(var(--color-primary), transparent);
   width: 22rem;
@@ -48,8 +49,8 @@ header {
   padding: 5rem 1.5rem 1.5rem 1.5rem;
 }
 
-/* ======== SCROLL DOWN ==============*/
-.scroll__down {
+/* SCROLL DOWN */
+.scroll__top {
   position: fixed;
   right: 2.3rem;
   bottom: 5rem;
@@ -58,14 +59,34 @@ header {
   font-size: 0.9rem;
 }
 
-/*==================== MEDIA QUERIES (MEDIUM DEVICES) ====================*/
+/* Theme Toggle Button */
+.theme-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 8px 12px;
+  background: var(--color-bg-variant);
+  color: var(--color-white);
+  border: 1px solid var(--color-primary);
+  border-radius: 1rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: var(--transition);
+}
+
+.theme-toggle:hover {
+  background: var(--color-primary);
+  color: var(--color-bg);
+}
+
+/* MEDIA QUERIES (MEDIUM DEVICES) */
 @media screen and (max-width: 1024px) {
   header {
     height: 68vh;
   }
 }
 
-/*==================== MEDIA QUERIES (SMALL DEVICES) ====================*/
+/* MEDIA QUERIES (SMALL DEVICES) */
 @media screen and (max-width: 600px) {
   header {
     height: 100vh;
@@ -75,4 +96,3 @@ header {
     display: none;
   }
 }
-

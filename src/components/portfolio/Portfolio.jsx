@@ -49,7 +49,7 @@ const PortfolioImage = styled.div`
 
   img {
     width: 100%;
-    height: auto;
+    height: 10rem;
   }
 `;
 
@@ -69,6 +69,7 @@ const CTA = styled.div`
 
     &:hover {
       background: var(--color-primary-variant);
+      scale: 0.9;
     }
   }
 `;
@@ -101,15 +102,15 @@ const data = [
   //   description:
   //     "Developed a dashboard system integrating Power BI reports with cost optimization features, reducing the need for multiple licenses. Enhanced decision-making through centralized data visualization.",
   // },
-  {
-    id: 4,
-    image: TAMSimg,
-    title: "T A M S",
-    github: "https://github.com/itsayushmathur/TAMS",
-    demo: "https://talentams.netlify.app",
-    description:
-      "TAMS (Talent Allocation Management System) streamlines talent allocation for organizations. Built with React.js, it improves resource management and enhances project productivity.",
-  },
+  // {
+  //   id: 4,
+  //   image: TAMSimg,
+  //   title: "T A M S",
+  //   github: "https://github.com/itsayushmathur/TAMS",
+  //   demo: "https://talentams.netlify.app",
+  //   description:
+  //     "TAMS (Talent Allocation Management System) streamlines talent allocation for organizations. Built with React.js, it improves resource management and enhances project productivity.",
+  // },
   {
     id: 5,
     image: TWMimg,
@@ -124,7 +125,6 @@ const data = [
     image: WonderStudyimg,
     title: "Wonder Study",
     github: "https://github.com/itsayushmathur/WonderStudy-Course_Management",
-    demo: "https://github.com/itsayushmathur/WonderStudy-Course_Management",
     description:
       "A Java-based course management system designed for educational institutions. Built with Swing and AWT, it manages courses, faculty, and student data efficiently.",
   },
@@ -134,7 +134,7 @@ const data = [
     title: "RTO Management System",
     github:
       "https://github.com/itsayushmathur/road-and-transport-office.github.io",
-    demo: "https://github.com/itsayushmathur/road-and-transport-office.github.io",
+    // demo: "https://github.com/itsayushmathur/road-and-transport-office.github.io",
     description:
       "A Java application for managing Regional Transport Office operations, including license applications and vehicle registrations with database integration.",
   },
@@ -143,7 +143,7 @@ const data = [
     image: Vaultimg,
     title: "The Vault",
     github: "https://github.com/itsayushmathur/The_Vault.github.io",
-    demo: "https://github.com/itsayushmathur/The_Vault.github.io",
+    // demo: "https://github.com/itsayushmathur/The_Vault.github.io",
     description:
       "A vehicle catalog management system for car showrooms. Built with Java, it includes modules for administration, employee management, and customer bookings.",
   },

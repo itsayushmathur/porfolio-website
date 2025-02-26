@@ -14,6 +14,11 @@ const AboutContainer = styled.div`
   grid-template-columns: 35% 50%;
   gap: 15%;
 
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
   @media (max-width: 1024px) {
     grid-template-columns: 1fr;
     gap: 0;
@@ -24,7 +29,12 @@ const AboutMe = styled.div`
   width: 100%;
   aspect-ratio: 1/1;
   border-radius: 2rem;
-  background: linear-gradient(45deg, transparent, var(--color-primary), transparent);
+  background: linear-gradient(
+    45deg,
+    transparent,
+    var(--color-primary),
+    transparent
+  );
   display: grid;
   place-items: center;
 
@@ -153,9 +163,9 @@ const About = () => {
             I'm a passionate React.js Developer with over 2 years of experience,
             specializing in building scalable, responsive web applications. I've
             developed complex projects like the Employee Portal and VINGS
-            dashboard from scratch, handling both design and development.
-            Driven by continuous learning, I thrive on solving challenges and
-            crafting seamless user experiences.
+            dashboard from scratch, handling both design and development. Driven
+            by continuous learning, I thrive on solving challenges and crafting
+            seamless user experiences.
           </Description>
 
           <Button href="#contact">Let's Talk</Button>
