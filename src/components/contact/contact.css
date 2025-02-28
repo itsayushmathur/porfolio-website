@@ -12,40 +12,87 @@
 }
 
 .contact__option {
-  /* background: var(--color-bg-variant); */
-  /* width: 20rem; */
+  display: flex;
+  align-items: center;
+  gap: 1rem;
   padding: 1.2rem;
   border-radius: 1.2rem;
-  text-align: center;
+  text-align: left;
   border: 1px solid transparent;
   transition: var(--transition);
+  cursor: pointer;
 }
 
-.gmail {
-  background: linear-gradient(to right,
-      #3e65cf 10%,
-      #c71610 40%,
-      #f2a60c 60%,
-      #3b60c4 80%,
-      #08851b 100%);
+/* Default text and icon color */
+.contact__option-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: white;
 }
 
-.wa {
-  background: #40dd5c;
+.contact__option h4 {
+  font-size: 1.1rem;
+  margin-bottom: 0.3rem;
 }
 
-.tele {
-  background: #31a1db;
-}
-
-.contact__option:hover {
-  background: transparent;
-  border-color: var(--color-primary-variant);
+.contact__option h5 {
+  font-size: 0.9rem;
+  font-weight: 300;
+  opacity: 0.9;
 }
 
 .contact__option-icon {
   font-size: 2.5rem;
-  margin-bottom: 0.5rem;
+  flex-shrink: 0;
+  color: white; /* default color */
+}
+
+/* Background colors for each article */
+.gmail {
+  background: #DB4437;
+}
+
+.wa {
+  background: #25D366;
+}
+
+.tele {
+  background: #0088cc;
+}
+
+/* General hover effect for background */
+.contact__option:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Hover text and icon color change based on the article */
+.gmail:hover .contact__option-text,
+.gmail:hover .contact__option-icon {
+  color: #DB4437;
+}
+
+.wa:hover .contact__option-text,
+.wa:hover .contact__option-icon {
+  color: #25D366;
+}
+
+.tele:hover .contact__option-text,
+.tele:hover .contact__option-icon {
+  color: #0088cc;
+}
+
+/* Specific hover border color change for each article */
+.gmail:hover {
+  border-color: #DB4437;
+}
+
+.wa:hover {
+  border-color: #25D366;
+}
+
+.tele:hover {
+  border-color: #0088cc;
 }
 
 .contact__option a {
@@ -75,10 +122,8 @@ textarea {
   resize: none;
   color: var(--color-white);
   transition: background-color 0.3s ease;
-  /* Smooth transition for hover effect */
 }
 
-/* Change background color on hover */
 input:hover,
 textarea:hover {
   background: var(--color-primary);
@@ -97,6 +142,6 @@ textarea:hover {
 /*==================== MEDIA QUERIES (SMALL DEVICES) ====================*/
 @media screen and (max-width: 600px) {
   .container.contact__container {
-    width: var(container-width-sm);
+    width: var(--container-width-sm);
   }
 }

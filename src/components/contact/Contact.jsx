@@ -61,58 +61,48 @@ const Contact = () => {
 
       <div className="container contact__container">
         <div className="contact__options">
-          <article className="contact__option gmail">
+          <article
+            className="contact__option gmail"
+            onClick={() => {
+              window.open("mailto:mathurayush121@gmail.com", "_blank");
+            }}
+          >
             <MdOutlineEmail className="contact__option-icon" />
-            <h4>Email</h4>
-            <h5>mathurayush121@gmail.com</h5>
-            <a
-              href="mailto:mathurayush121@gmail.com"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Send a message
-            </a>
+            <div className="contact__option-text">
+              <h4>Email</h4>
+              <h5>mathurayush121@gmail.com</h5>
+            </div>
           </article>
-          <article className="contact__option wa">
+          <article
+            className="contact__option wa"
+            onClick={() => {
+              window.open("https://api.whatsapp.com/send?phone=9889245681", "_blank");
+            }}
+          >
             <BsWhatsapp className="contact__option-icon" />
-            <h4>WhatsApp</h4>
-            <h5>+91 9889245681</h5>
-            <a
-              href="https://api.whatsapp.com/send?phone=9889245681"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Send a message
-            </a>
+            <div className="contact__option-text">
+              <h4>WhatsApp</h4>
+              <h5>+91 9889245681</h5>
+            </div>
           </article>
-          <article className="contact__option tele">
+          <article
+            className="contact__option tele"
+            onClick={() => {
+              window.open("https://t.me/itsayushmathur", "_blank");
+            }}
+          >
             <RiTelegramLine className="contact__option-icon" />
-            <h4>Telegram</h4>
-            <h5>@itsayushmathur</h5>
-            <a
-              href="https://t.me/itsayushmathur"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Send a message
-            </a>
+            <div className="contact__option-text">
+              <h4>Telegram</h4>
+              <h5>@itsayushmathur</h5>
+            </div>
           </article>
         </div>
         {/* END OF CONTACT OPTIONS */}
         <form ref={form} onSubmit={sendEmail}>
-          <input
-            type="text"
-            name="name"
-            placeholder="Your Full Name"
-            required
-          />
+          <input type="text" name="name" placeholder="Your Full Name" required />
           <input type="email" name="email" placeholder="Your Email" required />
-          <textarea
-            name="message"
-            rows="7"
-            placeholder="Your Message"
-            required
-          ></textarea>
+          <textarea name="message" rows="7" placeholder="Your Message" required></textarea>
           <button type="submit" className="btn btn-primary" disabled={loading}>
             {loading ? (
               <CircularProgress size={24} style={{ color: "#fff" }} />
@@ -130,8 +120,7 @@ const Contact = () => {
         anchorOrigin={{ vertical: "top", horizontal: "center" }}
         sx={{
           "& .MuiSnackbarContent-root": {
-            backgroundColor:
-              alertSeverity === "success" ? "#4caf50" : "#f44336",
+            backgroundColor: alertSeverity === "success" ? "#4caf50" : "#f44336",
             color: "#fff",
             fontSize: "1rem",
           },
