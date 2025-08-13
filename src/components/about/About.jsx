@@ -141,8 +141,15 @@ const About = () => {
         </AboutMe>
 
         <AboutContent>
+          {/* should scroll to expeience section on click */}
           <AboutCards>
-            <AboutCard>
+            <AboutCard
+              onClick={() =>
+                document
+                  .getElementById("experience")
+                  .scrollIntoView({ behavior: "smooth" })
+              }
+            >
               <Icon>
                 <FaAward />
               </Icon>
@@ -150,7 +157,14 @@ const About = () => {
               <small>2+ Years Working</small>
             </AboutCard>
 
-            <AboutCard>
+            {/* should scroll to portfolio section on click */}
+            <AboutCard
+              onClick={() =>
+                document
+                  .getElementById("portfolio")
+                  .scrollIntoView({ behavior: "smooth" })
+              }
+            >
               <Icon>
                 <VscFolderLibrary />
               </Icon>
