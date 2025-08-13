@@ -3,10 +3,12 @@ import styled from "styled-components";
 import WonderStudyimg from "../../assets/portfolio1.jpg";
 import RTOimg from "../../assets/portfolio2.jpg";
 import Vaultimg from "../../assets/portfolio3.jpg";
-import TAMSimg from "../../assets/portfolio4.jpg";
+// import TAMSimg from "../../assets/portfolio4.jpg";
 import TWMimg from "../../assets/portfolio5.jpg";
 import EmployeePortalImg from "../../assets/employee_portal.png";
 import VingsImg from "../../assets/vings_dashboard.png";
+import ClimateChronicles from "../../assets/climate_chronicles.png";
+import DocShareImg from "../../assets/doc_share.png";
 // import GrowthDashboardImg from "../../assets/growth_dashboard.jpg";
 
 // Styled Components
@@ -75,6 +77,25 @@ const CTA = styled.div`
 `;
 
 const data = [
+  {
+    id: 1,
+    image: DocShareImg,
+    title: "DocShare (Ongoing Project)",
+    github: "https://github.com/itsayushmathur/docshare-frontend",
+    // demo: "https://climate-chronicles.vercel.app/",
+    description:
+      "A File Upload and Sharing Web App using React, Spring Boot, MongoDB, Tailwind CSS, and Clerk Authentication. It allows users to upload, share, and manage files securely with a user-friendly interface.",
+  },
+
+  {
+    id: 1,
+    image: ClimateChronicles,
+    title: "Climate Chronicles",
+    github: "https://github.com/itsayushmathur/climate-chronicles",
+    demo: "https://climate-chronicles.vercel.app/",
+    description:
+      "This is a Weather Data Visualization App built using React.js and Styled Components. It provides graphical and list-based representations of weather data for a selected location and date range.",
+  },
   {
     id: 1,
     image: EmployeePortalImg,

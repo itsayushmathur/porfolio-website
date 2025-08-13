@@ -160,12 +160,16 @@ const About = () => {
           </AboutCards>
 
           <Description>
-            I'm a passionate React.js Developer with over 2 years of experience,
-            specializing in building scalable, responsive web applications. I've
-            developed complex projects like the Employee Portal and VINGS
-            dashboard from scratch, handling both design and development. Driven
-            by continuous learning, I thrive on solving challenges and crafting
-            seamless user experiences.
+            Frontend Engineer with 2+ years of experience and strong expertise
+            in React.js, modern JavaScript (ES6+), and component-driven UI.
+            Passionate about frontend architecture, performance optimisation,
+            accessibility, and scalable component libraries. Proven track record
+            delivering responsive, maintainable UIs and collaborating closely
+            with backend, QA and design teams to ship production-ready features.
+            Key strengths: component reusability, state management (Redux),
+            responsive & mobile-first design, performance tuning (lazy loading,
+            memoization, code-splitting), accessibility, and pragmatic error
+            handling.
           </Description>
 
           <Button href="#contact">Let's Talk</Button>
