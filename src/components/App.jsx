@@ -5,7 +5,7 @@ import Nav from "./nav/Nav";
 import Footer from "./footer/Footer";
 import Portfolio from "./portfolio/Portfolio";
 import Experience from "./experience/Experience";
-import Services from "./services/Services";
+import Services from "./services/Services.jsx";
 import Contact from "./contact/Contact";
 const App = () => {
   return (

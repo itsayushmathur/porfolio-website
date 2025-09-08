@@ -263,6 +263,8 @@ const Experience = () => {
             </ExperienceContent>
           </ExperienceBox>
 
+          
+
           {/* Miscellaneous */}
           <ExperienceBox>
             <h3>Miscellaneous</h3>
@@ -284,6 +286,22 @@ const Experience = () => {
             <h3>Deployment</h3>
             <ExperienceContent>
               {technicalSkills.deployment.map((skill, i) => (
+                <ExperienceDetails key={i}>
+                  <Icon />
+                  <div>
+                    <h4>{skill.name}</h4>
+                    {skill.level && <small className="text-light">{skill.level}</small>}
+                  </div>
+                </ExperienceDetails>
+              ))}
+            </ExperienceContent>
+          </ExperienceBox>
+
+          {/* database */}
+          <ExperienceBox>
+            <h3>Database</h3>
+            <ExperienceContent>
+              {technicalSkills.database.map((skill, i) => (
                 <ExperienceDetails key={i}>
                   <Icon />
                   <div>

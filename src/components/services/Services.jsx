@@ -1,13 +1,19 @@
+// Services.jsx
 import React from "react";
 import styled from "styled-components";
 import { BiCheck } from "react-icons/bi";
+import services from "./services"; // adjust path if needed
 
-// Styled Components
+// Styled Components (kept your original styles)
 const ServicesSection = styled.section`
+w
   padding: 2rem 6rem;
-  ${'' /* background: var(--color-bg); */}
   color: var(--color-light);
   text-align: center;
+
+  @media (max-width: 600px) {
+    padding: 2rem 1.25rem;
+  }
 `;
 
 const SectionHeader = styled.div`
@@ -59,15 +65,14 @@ const ServiceCard = styled.article`
 
 const ServiceHead = styled.div`
   background: var(--color-primary);
-  padding: 1.5rem;
+  padding: 1.25rem 1rem;
   border-radius: 1rem 1rem 0 0;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 
   h3 {
     color: var(--color-white);
-    ${'' /* font-size: 1.5rem; */}
-    ${'' /* font-weight: bold; */}
     letter-spacing: 0.5px;
+    margin: 0;
   }
 `;
 
@@ -92,11 +97,14 @@ const ServiceItem = styled.li`
     font-size: 1rem;
     line-height: 1.5;
     color: var(--color-light);
+    margin: 0;
   }
 
   strong {
     color: var(--color-primary);
     font-weight: 600;
+    display: inline-block;
+    margin-right: 0.3rem;
   }
 `;
 
@@ -104,110 +112,37 @@ const ServiceIcon = styled(BiCheck)`
   color: var(--color-primary);
   margin-top: 4px;
   font-size: 1.5rem;
+  flex-shrink: 0;
 `;
 
+// Component
 const Services = () => {
   return (
     <ServicesSection id="services">
-      {/* <SectionHeader> */}
+      <SectionHeader>
         <h5>What I Offer</h5>
         <h2>Services</h2>
-      {/* </SectionHeader> */}
+      </SectionHeader>
 
       <ServicesContainer>
-        {/* Frontend Development Services */}
-        <ServiceCard>
-          <ServiceHead>
-            <h3>Frontend Development</h3>
-          </ServiceHead>
-          <ServiceList>
-            <ServiceItem>
-              <ServiceIcon />
-              <p>
-                <strong>Responsive Web Applications:</strong> I develop
-                scalable, mobile-responsive applications using React.js for
-                seamless performance.
-              </p>
-            </ServiceItem>
-            <ServiceItem>
-              <ServiceIcon />
-              <p>
-                <strong>Optimized Performance:</strong> I focus on performance
-                optimization, reducing load times, and enhancing user
-                engagement.
-              </p>
-            </ServiceItem>
-            <ServiceItem>
-              <ServiceIcon />
-              <p>
-                <strong>Custom Dashboard Development:</strong> Experienced in
-                building data-driven dashboards, integrating Power BI reports
-                for centralized insights.
-              </p>
-            </ServiceItem>
-          </ServiceList>
-        </ServiceCard>
+        {services.map((svc) => (
+          <ServiceCard key={svc.id}>
+            <ServiceHead>
+              <h3>{svc.title}</h3>
+            </ServiceHead>
 
-        {/* UI/UX Design Services */}
-        <ServiceCard>
-          <ServiceHead>
-            <h3>UI/UX Design</h3>
-          </ServiceHead>
-          <ServiceList>
-            <ServiceItem>
-              <ServiceIcon />
-              <p>
-                <strong>Modern User Interfaces:</strong> Clean, intuitive UIs
-                with Tailwind CSS & Material-UI for vibrant, responsive layouts.
-              </p>
-            </ServiceItem>
-            <ServiceItem>
-              <ServiceIcon />
-              <p>
-                <strong>Mobile-First Design:</strong> Building apps that adapt
-                flawlessly to all screen sizes for consistent user experiences.
-              </p>
-            </ServiceItem>
-            <ServiceItem>
-              <ServiceIcon />
-              <p>
-                <strong>Interactive Prototypes:</strong> Developing prototypes
-                to visualize workflows, aiding product functionality before
-                development.
-              </p>
-            </ServiceItem>
-          </ServiceList>
-        </ServiceCard>
-
-        {/* Digital Art Services */}
-        <ServiceCard>
-          <ServiceHead>
-            <h3>Digital Art & Design</h3>
-          </ServiceHead>
-          <ServiceList>
-            <ServiceItem>
-              <ServiceIcon />
-              <p>
-                <strong>Sketching & Illustrations:</strong> Creating unique
-                visuals that blend creativity with technical precision.
-              </p>
-            </ServiceItem>
-            <ServiceItem>
-              <ServiceIcon />
-              <p>
-                <strong>Custom Graphic Designs:</strong> Designing engaging
-                graphics to enhance brand identity and storytelling.
-              </p>
-            </ServiceItem>
-            <ServiceItem>
-              <ServiceIcon />
-              <p>
-                <strong>Creative UI Elements:</strong> Adding artistic elements
-                to web apps for visually appealing yet functional designs.
-              </p>
-            </ServiceItem>
-          </ServiceList>
-        </ServiceCard>
+            <ServiceList>
+              {svc.points.map((pt, idx) => (
+                <ServiceItem key={idx}>
+                  <ServiceIcon aria-hidden />
+                  <p>
+                    <strong>{pt.title}:</strong> {pt.desc}
+                  </p>
+                </ServiceItem>
+              ))}
+            </ServiceList>
+          </ServiceCard>
+        ))}
       </ServicesContainer>
     </ServicesSection>
   );
