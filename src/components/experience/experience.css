@@ -1,63 +1,248 @@
-.experience__container {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1rem;
+/* experience.css
+   Converted from styled-components to classic CSS
+   Desktop layout preserved: 3 column grid for experience-container
+   Mobile fixes included (no desktop regression)
+*/
+
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap");
+
+.experience-section {
+  padding: 2rem 6rem;
+  font-family: "Roboto", sans-serif;
 }
-.experience__container > div {
-  background: var(--color-bg-variant);
-  padding: 2.4rem 2rem;
-  border-radius: 2rem;
-  border: 1px solid transparent;
-  transition: var(--transition);
+
+/* Headings */
+.experience-section .subheading {
+  color: var(--color-light);
+  text-align: center;
+  margin-bottom: 0.25rem;
 }
-.experience__container > div:hover {
-  background: transparent;
-  border-color: var(--color-primary-variant);
-  cursor: default;
-}
-.experience__container > div h3 {
+.experience-section .heading {
+  color: var(--color-primary);
   text-align: center;
   margin-bottom: 2rem;
-  color: var(--color-primary);
 }
-.experience__content {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  row-gap: 2rem;
-}
-.experience__details {
+
+/* Tabs */
+.tabs {
   display: flex;
   gap: 1rem;
+  margin-bottom: 2rem;
+  justify-content: center;
 }
-.experience__details-icon {
+.tab-button {
+  padding: 0.6rem 1.2rem;
+  border-radius: 0.5rem;
+  border: none;
+  background: var(--color-bg-variant);
+  color: var(--color-light);
+  cursor: pointer;
+  font-weight: 500;
+  transition: var(--transition);
+}
+.tab-button:hover {
+  background: var(--color-primary-variant);
+  color: #fff;
+}
+.tab-button.active {
+  background: var(--color-primary);
+  color: #fff;
+}
+
+/* Experience container: desktop uses 3 columns (preserved from styled-components) */
+.experience-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+/* Experience box shared style */
+.experience-box,
+.professional-box {
+  background: var(--color-bg-variant);
+  padding: 2rem;
+  border-radius: 1.6rem;
+  border: 1px solid transparent;
+  transition: var(--transition);
+  box-shadow: 0 6px 18px rgba(11, 13, 20, 0.04);
+}
+.experience-box:hover,
+.professional-box:hover {
+  background: transparent;
+  border-color: var(--color-primary-variant);
+  transform: translateY(-6px);
+}
+
+/* Title inside boxes */
+.experience-box h3,
+.professional-box h3 {
+  text-align: center;
+  margin-bottom: 1.25rem;
+  color: var(--color-primary);
+}
+
+/* Experience content grid (two columns) */
+.experience-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  row-gap: 1.4rem;
+  padding: 1rem;
+}
+
+/* Individual detail row */
+.experience-details,
+.job-point {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+.experience-icon {
   margin-top: 6px;
   color: var(--color-primary);
 }
 
+/* PROFESSIONAL specific tweaks */
+.professional-container {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(3, 1fr);
+}
+.professional-box {
+  padding: 1.6rem;
+  border-radius: 1.25rem;
+}
+.professional-box .job-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.6rem;
+}
+.role {
+  text-align: left;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  line-height: 1.15;
+}
+.company-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 4px;
+}
+.logo {
+  width: 5rem;
+  height: 3rem;
+  object-fit: contain;
+  border-radius: 8px;
+  margin-right: 10px;
+}
+.company {
+  font-weight: 600;
+  color: var(--color-light);
+  font-size: 0.95rem;
+}
+.meta {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+.pill {
+  background: linear-gradient(
+    90deg,
+    var(--color-primary) 0%,
+    var(--color-primary-variant) 100%
+  );
+  color: #fff;
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+/* divider and job-points */
+.divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.03);
+  margin: 0.9rem 0;
+}
+.job-points {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  padding: 0.25rem 0;
+}
+.job-point h4 {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--color-light);
+  margin: 0;
+}
+
+/* Hover icon size tweak */
+.job-point .experience-icon {
+  margin-top: 4px;
+  font-size: 0.85rem;
+}
+
 /* ============= MEDIA QUERIES (MEDIUM DEVICES) ============ */
 @media screen and (max-width: 1024px) {
-  .experience__container {
+  .experience-section {
+    padding: 2rem 3rem;
+  }
+  .experience-container,
+  .professional-container {
     grid-template-columns: 1fr;
+    gap: 1rem;
   }
-  .experience__container > div {
-    width: 80%;
-    padding: 2rem;
+
+  .experience-box,
+  .professional-box {
+    width: 90%;
     margin: 0 auto;
+    padding: 2rem;
   }
-  .experience__content {
+
+  .experience-content {
     padding: 1rem;
   }
 }
+
 /* ============= MEDIA QUERIES (Small DEVICES) ============ */
 @media screen and (max-width: 600px) {
-  .experience__container {
+  .experience-section {
+    padding: 1.5rem 1rem;
+  }
+  .experience-container,
+  .professional-container {
     gap: 1rem;
   }
-  .experience__container > div {
+  .experience-box,
+  .professional-box {
     width: 100%;
-    padding: 2rem 1rem;
+    padding: 1.6rem;
   }
-  .experience__content {
+  .experience-content {
     padding: 1rem 1rem;
+    grid-template-columns: 1fr;
+    row-gap: 1rem;
+  }
+  .experience-box h3 {
+    font-size: 1rem;
+  }
+}
+
+/* Disable hover transforms on touch devices */
+@media (hover: none) and (pointer: coarse) {
+  .experience-box,
+  .professional-box {
+    transform: none !important;
+    transition: none !important;
+  }
+  .experience-box:hover,
+  .professional-box:hover {
+    transform: none;
+    box-shadow: 0 6px 18px rgba(11, 13, 20, 0.04);
   }
 }

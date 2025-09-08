@@ -3,10 +3,12 @@ import "./header.css";
 import CTA from "./CTA";
 import ME from "../../assets/me.png";
 import HeaderSocials from "./HeaderSocials";
-import BMC from "./BMC";
+import BMC from "./BMC"; // if you have this component; keep as-is
 
 const Header = () => {
-  const [theme, setTheme] = useState(localStorage.getItem("theme") || "dark");
+  const [theme, setTheme] = useState(
+    localStorage.getItem("theme") || "dark"
+  );
 
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);
@@ -14,27 +16,31 @@ const Header = () => {
   }, [theme]);
 
   return (
-    <header>
-      {/* Theme Toggle Button */}
+    <header className="site-header">
       <button
         className="theme-toggle"
+        aria-label="Toggle theme"
         onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
       >
         {theme === "dark" ? "☀️ Light" : "🌙 Dark"}
       </button>
+
       <div className="container header_container">
-        {/* <h5>Hello I'm</h5> */}
-        <h1>Hello, I'm Ayush Mathur</h1>
-        <h5 className="text-light">Frontend-heavy Fullstack Developer</h5>
-        <CTA />
-        <HeaderSocials />
-        <div className="me">
-          <img src={ME} alt="me" />
+        <div className="header_text">
+          <h1 className="header_name">Hello, I'm Ayush Mathur</h1>
+          <h5 className="text-light header_role">Frontend-heavy Fullstack Developer</h5>
+          <CTA />
+          <HeaderSocials />
         </div>
+
+        <div className="me">
+          <img src={ME} alt="Ayush Mathur" className="me-img" />
+        </div>
+
         <BMC />
       </div>
 
-      <a href="#" className="scroll__top">
+      <a href="#" className="scroll__top" aria-hidden>
         Scroll To Top
       </a>
     </header>

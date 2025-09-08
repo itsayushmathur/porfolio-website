@@ -1,71 +1,96 @@
-.services__container{
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 3rem;
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap");
+
+.services {
+  padding: 2rem 6rem;
+  text-align: center;
+  font-family: "Roboto", sans-serif;
 }
 
-.service{
-    background: var(--color-bg-variant);
-    border-radius: 2rem 3rem 1rem 1rem;
-    border: 3px solid var(--color-primary);
-    transition: var(--transition);
-    height: fit-content;
+.services__header h5 {
+  color: var(--color-light);
+  text-align: center;
+  margin-bottom: 0.25rem;
 }
 
-.service::hover{
-    background: transparent;
-    border-color: var(--color-primary);
-    cursor: default;
+.services__header h2 {
+   color: var(--color-primary);
+  text-align: center;
+  margin-bottom: 2rem;
 }
 
-.service__head{
-    background: var(--color-primary);
-    padding: 2rem;
-    border-radius: 64px 96px 128px 32px;
-    box-shadow: 0 2rem 1rem rgba(0, 0, 0, 0.1);
+.services__container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-top: 3rem;
 }
 
-.service__head h3{
-    color: var(--color-bg);
-    font-size: 1rem;
-    text-align: center;
-}
-.service__list{
-    padding: 2rem;
-}
-.service__list li{
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 0.8rem;
+.service {
+  background: var(--color-bg-variant);
+  border-radius: 1.2rem;
+  transition: var(--transition);
+  border: 1px solid transparent;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
 }
 
-.service__list-icon{
-    color: var(--color-primary);
-    margin-top: 2rem;
-    font-size: 2rem;
+.service:hover {
+  background: transparent;
+  border-color: var(--color-primary-variant);
+  transform: translateY(-6px);
 }
 
-.service__list p{
-    font-size: 0.9rem;
-
+.service__head {
+  background: var(--color-primary);
+  padding: 1rem;
+  border-radius: 1.2rem 1.2rem 0 0;
 }
 
-/*==================== MEDIA QUERIES (MEDIUM DEVICES) ====================*/
-@media screen and (max-width: 1024px) {
-    .services__container{
-        grid-template-columns: 1fr 1fr;
-        gap: 2rem;
-    }
-
-    .service{
-        height: auto;
-    }
+.service__head h3 {
+  color: var(--color-white);
+  font-size: 1.1rem;
+  margin: 0;
 }
 
-/*==================== MEDIA QUERIES (SMALL DEVICES) ====================*/
-@media screen and (max-width: 600px) {
-    .services__container{
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-    }
+.service__list {
+  padding: 1.5rem;
+  text-align: left;
+}
+
+.service__list li {
+  display: flex;
+  gap: 0.8rem;
+  margin-bottom: 1rem;
+  align-items: flex-start;
+  transition: transform 0.3s ease;
+}
+
+.service__list li:hover {
+  transform: translateX(5px);
+}
+
+.service__list-icon {
+  color: var(--color-primary);
+  font-size: 1.4rem;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.service__list p {
+  font-size: 0.95rem;
+  color: var(--color-light);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .services__container {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (max-width: 600px) {
+  .services {
+    padding: 2rem 1.5rem;
+  }
+  .services__container {
+    grid-template-columns: 1fr;
+  }
 }

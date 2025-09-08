@@ -1,35 +1,124 @@
-nav {
-  background: linear-gradient(95deg, #f7f9fc 0%, #8fb2e7, 40%);
+/* Complete rewrite following Google Material Design principles */
 
-  width: max-content;
-  display: block;
-  padding: 0.7rem 1.7rem;
-  z-index: 2;
+.main-nav {
   position: fixed;
-  left: 50%;
-  transform: translate(-50%);
   bottom: 2rem;
-  display: flex;
-  gap: 0.5rem;
-  border-radius: 3rem;
-  backdrop-filter: blur(15px);
-}
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
 
-nav a {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+
   background: transparent;
-  padding: 0.9rem;
-  border-radius: 50%;
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 2rem;
+  padding: 0.75rem 1rem;
+
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05), 0 10px 15px rgba(0, 0, 0, 0.1);
+
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dark .main-nav {
+  background: rgba(20, 20, 20, 0.95);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.nav-link {
   display: flex;
-  color: var(--color-primary);
-  font-size: 1.1rem;
+  align-items: center;
+  justify-content: center;
+
+  width: 2.75rem;
+  height: 2.75rem;
+
+  color: var(--color-muted-foreground);
+  font-size: 1.125rem;
+
+  border-radius: 50%;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
 }
 
-nav a:hover {
-  background: rgba(0, 0, 0, 0.3);
-  color: white;
-}
-
-nav a.active {
+.nav-link::before {
+  content: "";
+  position: absolute;
+  inset: 0;
   background: var(--color-primary);
-  color: var(--color-bg);
+  border-radius: 50%;
+  transform: scale(0);
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: -1;
+}
+
+.nav-link:hover {
+  color: var(--color-primary);
+  transform: translateY(-2px);
+}
+
+.nav-link:hover::before {
+  transform: scale(0.3);
+  opacity: 0.1;
+}
+
+.nav-link.active {
+  color: var(--color-primary-foreground);
+  background: var(--color-primary);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.nav-link.active::before {
+  transform: scale(1);
+  opacity: 1;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .main-nav {
+    bottom: 1.5rem;
+    padding: 0.625rem 0.75rem;
+    gap: 0.125rem;
+  }
+
+  .nav-link {
+    width: 2.5rem;
+    height: 2.5rem;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-nav {
+    bottom: 1rem;
+    padding: 0.5rem;
+    gap: 0;
+  }
+
+  .nav-link {
+    width: 2.25rem;
+    height: 2.25rem;
+    font-size: 0.875rem;
+  }
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+  .main-nav,
+  .nav-link,
+  .nav-link::before {
+    transition: none;
+  }
+}
+
+/* Focus styles for keyboard navigation */
+.nav-link:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
 }

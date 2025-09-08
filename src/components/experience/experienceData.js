@@ -1,10 +1,11 @@
 // experienceData.js
-
+import InctureLogo from '../../assets/inctureLogo.png';
 export const professionalExperience = [
   {
     role: "Software Engineer - Products",
     company: "Incture - Chandigarh",
     duration: "Jul 2025 - Present",
+    logo: InctureLogo,
     points: [
       "Lead frontend delivery for selected modules; enforce component improvements, performance and best practices across the product.",
       "Mentoring 9 junior developers and interns on React patterns, debugging, and testing.",
@@ -18,6 +19,7 @@ export const professionalExperience = [
     role: "Associate Software Engineer - Web Developer",
     company: "Incture - Chandigarh",
     duration: "Aug 2023 - Jun 2025",
+    logo: InctureLogo,
     points: [
       "Developed and maintained 18+ modules for the Employee Portal and VINGS platform boosting user engagement by 25%.",
       "Built a reusable component library used across modules to accelerate development and reduce bugs by 30%.",
@@ -32,6 +34,7 @@ export const professionalExperience = [
     role: "Associate Software Engineer Intern",
     company: "Incture - Chandigarh",
     duration: "Jan 2023 - Jul 2023",
+    logo: InctureLogo,
     points: [
       "Designed 7+ UI components under senior developer guidance.",
       "Supported debugging, improving SonarQube quality by 30%, and participated in daily standups and code reviews.",
