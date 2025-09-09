@@ -1,20 +1,17 @@
-/* contact.css
-   Cleaned up, mobile-safe, keeps desktop layout identical while removing width overrides
-*/
-
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap");
+/* contact.css - fixed padding/overflow issues and mobile-safe layout */
 .contact-section {
   padding: 2rem 6rem;
-  font-family: "Roboto", sans-serif;
+  font-family: inherit;
 }
 
 .contact__container {
-  /* let .container control overall width — do not override it here */
+  /* DO NOT add extra padding here (was causing overflow) */
   display: grid;
-  grid-template-columns: 30% 1fr; /* left column (options) vs form */
+  grid-template-columns: 30% 1fr;
   gap: 12%;
   align-items: start;
-  padding: 2rem 6rem;
+  /* removed: padding: 2rem 6rem; */
+  width: 100%;
 }
 
 /* CONTACT OPTIONS */
@@ -51,18 +48,16 @@
   color: white;
 }
 
-/* Colors for option blocks */
+/* Colors */
 .gmail { background: #DB4437; }
 .wa { background: #25D366; }
 .tele { background: #0088cc; }
 
-/* Hover effects (desktop) */
 .contact__option:hover { background: rgba(255,255,255,0.06); }
 .gmail:hover { border-color: #DB4437; }
 .wa:hover { border-color: #25D366; }
 .tele:hover { border-color: #0088cc; }
 
-/* On hover, make icons/text tint to the brand color for desktop */
 .gmail:hover .contact__option-text, .gmail:hover .contact__option-icon { color: #DB4437; }
 .wa:hover .contact__option-text, .wa:hover .contact__option-icon { color: #25D366; }
 .tele:hover .contact__option-text, .tele:hover .contact__option-icon { color: #0088cc; }
@@ -77,7 +72,7 @@
   padding: 0.5rem;
 }
 
-/*===================== FORM =====================*/
+/* FORM */
 form {
   display: flex;
   flex-direction: column;
@@ -101,53 +96,57 @@ input:hover, textarea:hover {
   color: var(--color-bg);
 }
 
-/* make sure the submit button keeps its alignment on small screens */
 .btn.btn-primary { width: max-content; }
 
-/*===================== MEDIA QUERIES (MEDIUM DEVICES) =====================*/
+/* Medium screens: stack columns */
 @media screen and (max-width: 1024px) {
   .contact__container {
     grid-template-columns: 1fr;
     gap: 2rem;
   }
-  /* push blocks to center and restrict width for mid screens */
   .contact__container > * {
     width: 90%;
     margin: 0 auto;
   }
 }
 
-/*==================== MEDIA QUERIES (SMALL DEVICES) ====================*/
+/* Small screens: options become a horizontal scroll row (compact) */
 @media screen and (max-width: 600px) {
+  .contact-section { padding: 2rem 1rem; }
+
   .contact__container {
     gap: 1.2rem;
+    grid-template-columns: 1fr;
   }
   .contact__container > * {
     width: 100%;
     margin: 0;
   }
+
+  /* show contact options as a horizontal list so they don't stretch vertically too much */
   .contact__options {
-    flex-direction: column;
+    flex-direction: row;
     gap: 0.6rem;
     overflow-x: auto;
     padding-bottom: 0.5rem;
+    -webkit-overflow-scrolling: touch;
   }
+
   .contact__option {
     min-width: 9.5rem;
     flex: 0 0 auto;
     padding: 0.9rem;
   }
-  input, textarea {
-    padding: 1rem;
-  }
+
+  input, textarea { padding: 1rem; }
 }
 
-/* Disable hover/transform effects on touch devices */
+/* touch devices: avoid hover transforms */
 @media (hover: none) and (pointer: coarse) {
   .contact__option { transition: none; }
   .contact__option:hover { background: inherit; border-color: transparent; }
   .contact__option-icon, .contact__option-text { color: inherit; }
 }
 
-/* Small accessibility tweak */
+/* small accessibility tweak */
 input, textarea { caret-color: var(--color-primary); }

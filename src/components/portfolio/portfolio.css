@@ -1,49 +1,238 @@
+/* src/components/portfolio/portfolio.css
+   Updated to support MUI Accordion on mobile (smooth animations)
+   and keep desktop card + modal layout
+*/
+
+.portfolio-section {
+  padding: 2rem 6rem;
+  font-family: inherit;
+}
+
+.portfolio-sub { color: var(--color-light); text-align:center; margin-bottom:0.25rem; }
+.portfolio-heading { color: var(--color-primary); text-align:center; margin-bottom:2rem; }
+
 .portfolio__container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 3rem;
 }
-.portfolio__item {
+
+/* Desktop card */
+.portfolio__item.desktop-card {
   background: var(--color-bg-variant);
   padding: 1.5rem;
   border-radius: 2rem;
   border: 1px solid transparent;
   transition: var(--transition);
-}
-.portfolio__item:hover {
-  border-color: var(--color-primary-variant);
-  background: transparent;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  overflow: visible;
 }
 
+.portfolio__item.desktop-card:hover {
+  border-color: var(--color-primary-variant);
+  background: transparent;
+  transform: translateY(-6px);
+  box-shadow: 0 12px 32px rgba(11,13,20,0.06);
+}
+
+/* Shared image/title/cta styling */
 .portfolio__item-image {
   border-radius: 1.5rem;
   overflow: hidden;
+  cursor: pointer;
+  aspect-ratio: 16/9;
 }
+.portfolio__item-image img { width: 100%; height: 100%; object-fit: cover; display:block; }
 
-.portfolio__item h3 {
-  margin: 1.2rem 0 2rem;
-}
-.portfolio__item h4{
-  margin-bottom: 0.5rem;
+.portfolio__item-title {
+  margin: 0;
+  color: var(--color-primary);
+  font-size: 1.05rem;
 }
 .portfolio__item-cta {
   display: flex;
   gap: 1rem;
   margin-bottom: 1rem;
+  align-items: center;
+  flex-wrap: wrap;
 }
-
-
-/*==================== MEDIA QUERIES (MEDIUM DEVICES) ====================*/
-@media screen and (max-width: 1024px) {
-  .portfolio__container {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.2rem;
-  }
+.portfolio__item .btn {
+  padding: 0.45rem 0.8rem;
+  border-radius: 8px;
+  font-weight: 600;
+  background: var(--color-primary);
+  color: var(--color-bg);
+  border: 1px solid var(--color-primary);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  text-decoration: none;
+  cursor: pointer;
 }
-/*==================== MEDIA QUERIES (SMALL DEVICES) ====================*/
+.portfolio__item .view-btn { background: transparent; color: var(--color-white); border: 1px solid rgba(255,255,255,0.06); }
+
+/* details area (desktop visible) */
+.portfolio__item-details { margin-top: 0.5rem; color: var(--color-light); }
+.portfolio__item-desc { margin: 0; }
+
+/* ===================== MOBILE: MUI Accordion styling ===================== */
+
+/* make the container use single column on small screens */
 @media screen and (max-width: 600px) {
+  .portfolio-section { padding: 1.5rem 1rem; }
   .portfolio__container {
     grid-template-columns: 1fr;
     gap: 1rem;
   }
+
+  /* We'll style the MUI Accordion root to fit the card style */
+  .portfolio-accordion {
+    background: var(--color-bg-variant) !important;
+    color: var(--color-white);
+    border-radius: 1rem !important;
+    box-shadow: 0 8px 22px rgba(11,13,20,0.04);
+    border: 1px solid transparent;
+    margin: 0 !important;
+    overflow: visible;
+  }
+
+  .portfolio-accordion + .portfolio-accordion {
+    margin-top: 0.75rem;
+  }
+
+  /* Accordion summary: put thumbnail + title */
+  .pf-accordion-summary {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.6rem 0.75rem !important;
+    min-height: 0px !important;
+    border-radius: 1rem;
+  }
+
+  .pf-accordion-thumb {
+    width: 88px;
+    height: 60px;
+    flex: 0 0 auto;
+    overflow: hidden;
+    border-radius: 0.6rem;
+  }
+  .pf-accordion-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display:block;
+  }
+
+  .pf-accordion-title {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .pf-accordion-title .portfolio__item-title { font-size: 1rem; color: var(--color-primary); }
+
+  /* Accordion summary expand icon (arrow) styling - smooth rotation */
+  .pf-accordion-summary .MuiAccordionSummary-expandIcon {
+    color: var(--color-light);
+    transition: transform 320ms cubic-bezier(.2,.8,.2,1);
+  }
+  .pf-accordion-summary .MuiAccordionSummary-expandIconWrapper.Mui-expanded {
+    transform: rotate(180deg);
+  }
+
+  /* Accordion details */
+  .pf-accordion-details {
+    padding: 0.75rem 0.75rem 0.9rem !important;
+    border-top: 1px solid rgba(255,255,255,0.03);
+    animation: fadeInSlide 320ms ease;
+  }
+
+  @keyframes fadeInSlide {
+    from { opacity: 0; transform: translateY(-6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .pf-tech-list { display:flex; gap:0.5rem; flex-wrap:wrap; margin: 0.6rem 0; }
+  .tech-pill { background: rgba(255,255,255,0.03); padding: 0.25rem 0.45rem; border-radius: 999px; font-size: 0.75rem; color: var(--color-light); }
+
+  .pf-accordion-actions {
+    display:flex;
+    gap:0.5rem;
+    align-items:center;
+    margin-top: 0.5rem;
+  }
+
+  /* MUI Button styling tweak to fit look */
+  .mui-open-btn {
+    background: var(--color-primary) !important;
+    color: var(--color-bg) !important;
+    text-transform: none !important;
+    padding: 0.45rem 0.7rem !important;
+    font-weight: 600 !important;
+    box-shadow: none !important;
+  }
+}
+
+/* ===================== DESKTOP / TABLET: modal-related styles (unchanged) ===================== */
+/* Modal (desktop) */
+.portfolio-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 2200;
+  display: grid;
+  place-items: center;
+}
+.portfolio-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(2,6,20,0.6);
+}
+.portfolio-modal__panel {
+  position: relative;
+  width: min(980px, 95%);
+  max-height: 92vh;
+  overflow: auto;
+  background: var(--color-bg-variant);
+  border-radius: 10px;
+  padding: 1.25rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  z-index: 2300;
+  box-shadow: 0 20px 60px rgba(2,6,23,0.6);
+}
+.modal-close {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.6rem;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.06);
+  color: var(--color-white);
+  border-radius: 6px;
+  padding: 0.45rem;
+  cursor: pointer;
+}
+.modal-image { border-radius: 6px; overflow: hidden; aspect-ratio: 16/10; }
+.modal-image img { width:100%; height:100%; object-fit:cover; display:block; }
+.modal-body { padding: 0.4rem; display:flex; flex-direction:column; gap:0.75rem; }
+.modal-body h3 { margin:0; color: var(--color-primary); }
+.modal-cta { margin-top:auto; display:flex; gap:0.6rem; align-items:center; }
+
+/* responsive modal -> single column */
+@media screen and (max-width: 1024px) {
+  .portfolio-modal__panel { grid-template-columns: 1fr; width: min(760px, 96%); padding: 0.8rem; }
+  .modal-image { aspect-ratio: 16/9; }
+}
+@media screen and (max-width: 600px) {
+  .portfolio-modal__panel { width: 100%; padding: 0.6rem; gap:0.6rem; }
+  .modal-close { top:0.4rem; right:0.4rem; padding:0.4rem; }
+  .modal-body h3 { font-size: 1.05rem; }
+}
+
+/* disable hover transforms for touch devices */
+@media (hover: none) and (pointer: coarse) {
+  .portfolio__item.desktop-card { transform: none !important; transition: none !important; }
 }

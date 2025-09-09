@@ -40,7 +40,7 @@ const Nav = () => {
   ]
 
   return (
-    <nav className="main-nav">
+    <nav className="main-nav" aria-label="Primary Navigation">
       {navItems.map(({ href, icon: Icon, label }) => (
         <a
           key={href}
@@ -50,7 +50,7 @@ const Nav = () => {
           aria-label={label}
           title={label}
         >
-          <Icon />
+          <Icon aria-hidden="true" />
         </a>
       ))}
     </nav>

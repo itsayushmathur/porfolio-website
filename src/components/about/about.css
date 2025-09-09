@@ -6,7 +6,6 @@
 /* Optional: import Roboto (Google-like) for this component only.
    For consistent typography across the app, add the Google font link to index.html instead.
 */
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap");
 
 .about-section {
   /* Keep desktop padding consistent with previous design,
