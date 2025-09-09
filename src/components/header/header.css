@@ -10,8 +10,6 @@ header {
   height: 100%;
 }
 
-
-
 /* HEADER SOCIALS */
 .header_socials {
   display: flex;
@@ -53,6 +51,10 @@ header {
   font-size: 0.9rem;
 }
 
+.scroll__top .scroll-icon {
+  display: none;
+}
+
 /* Theme Toggle Button */
 .theme-toggle {
   position: fixed;
@@ -90,4 +92,15 @@ header {
     display: none;
   }
   
+  /* Show icon and hide text in mobile view */
+  .scroll__top .scroll-text {
+    display: none;
+  }
+  
+  .scroll__top .scroll-icon {
+    display: inline-block;
+    transform: rotate(-90deg); /* Counter-rotate since parent is rotated 90deg */
+    font-size: 1.2rem;
+    color: var(--color-light);
+  }
 }

@@ -4,6 +4,7 @@ import CTA from "./CTA";
 import ME from "../../assets/me.png";
 import HeaderSocials from "./HeaderSocials";
 import BMC from "./BMC"; // if you have this component; keep as-is
+import { FaArrowAltCircleUp } from "react-icons/fa";
 
 const Header = () => {
   const [theme, setTheme] = useState(
@@ -41,7 +42,8 @@ const Header = () => {
       </div>
 
       <a href="#" className="scroll__top" aria-hidden>
-        Scroll To Top
+        <span className="scroll-text">Scroll To Top</span>
+        <span className="scroll-icon"><FaArrowAltCircleUp/></span>
       </a>
     </header>
   );

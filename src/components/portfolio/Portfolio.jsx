@@ -2,162 +2,162 @@
 import React, { useEffect, useState } from "react";
 import "./portfolio.css";
 import { data } from "./portfolioData";
-import { FaGithub } from "react-icons/fa";
-import { FaExternalLinkAlt, FaTimes } from "react-icons/fa";
+import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
+
+/* MUI imports for accordion */
+import Accordion from "@mui/material/Accordion";
+import AccordionSummary from "@mui/material/AccordionSummary";
+import AccordionDetails from "@mui/material/AccordionDetails";
+import { MdExpandMore } from "react-icons/md";
 
 const Portfolio = () => {
   const [isMobile, setIsMobile] = useState(false);
   const [expandedId, setExpandedId] = useState(null); // for mobile accordion
-  const [modalItem, setModalItem] = useState(null); // for desktop modal
 
   useEffect(() => {
     const mq = window.matchMedia("(max-width: 600px)");
     const onChange = (e) => setIsMobile(e.matches);
     setIsMobile(mq.matches);
-    // modern browsers:
-    mq.addEventListener ? mq.addEventListener("change", onChange) : mq.addListener(onChange);
-    return () =>
-      mq.removeEventListener ? mq.removeEventListener("change", onChange) : mq.removeListener(onChange);
-  }, []);
-
-  // lock body scroll when modal open
-  useEffect(() => {
-    if (modalItem) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
+    if (mq.addEventListener) mq.addEventListener("change", onChange);
+    else mq.addListener(onChange);
     return () => {
-      document.body.style.overflow = "";
+      if (mq.removeEventListener) mq.removeEventListener("change", onChange);
+      else mq.removeListener(onChange);
     };
-  }, [modalItem]);
-
-  useEffect(() => {
-    const onEsc = (e) => {
-      if (e.key === "Escape") setModalItem(null);
-    };
-    window.addEventListener("keydown", onEsc);
-    return () => window.removeEventListener("keydown", onEsc);
   }, []);
 
-  const toggleMobile = (id) => {
-    setExpandedId((prev) => (prev === id ? null : id));
+  const handleAccordionChange = (id) => (ev, isExpanded) => {
+    setExpandedId(isExpanded ? id : null);
   };
 
-  const openModal = (item) => setModalItem(item);
-
   return (
-    <section id="portfolio" className="portfolio-section">
-      <h5 className="portfolio-sub">My Recent Work</h5>
-      <h2 className="portfolio-heading">Portfolio</h2>
+    <section id="portfolio" className="portfolio">
+      <div className="portfolio__header">
+        <h5>My Recent Work</h5>
+        <h2>Portfolio</h2>
+      </div>
 
-      <div className="portfolio__container container">
+      <div className="portfolio__container">
         {data.map((item) => {
-          const isExpanded = isMobile && expandedId === item.id;
-          return (
-            <article
-              key={item.id}
-              className={`portfolio__item ${isMobile && !isExpanded ? "collapsed" : ""}`}
-            >
-              <div
-                className="portfolio__item-image"
-                role={isMobile ? "button" : undefined}
-                tabIndex={isMobile ? 0 : undefined}
-                onClick={() => (isMobile ? toggleMobile(item.id) : null)}
-                onKeyDown={(e) => {
-                  if (isMobile && (e.key === "Enter" || e.key === " ")) toggleMobile(item.id);
-                }}
-                aria-expanded={isMobile ? (isExpanded ? "true" : "false") : undefined}
+          // Mobile: render MUI Accordion
+          if (isMobile) {
+            return (
+              <Accordion
+                key={item.id}
+                expanded={expandedId === item.id}
+                onChange={handleAccordionChange(item.id)}
+                className="portfolio-accordion"
+                TransitionProps={{ unmountOnExit: true }}
               >
+                <AccordionSummary
+                  expandIcon={<MdExpandMore />}
+                  aria-controls={`panel-${item.id}-content`}
+                  id={`panel-${item.id}-header`}
+                  className="pf-accordion-summary"
+                >
+                  <div className="pf-accordion-thumb">
+                    <img src={item.image} alt={item.title} />
+                  </div>
+                  <div className="pf-accordion-title">
+                    <h3>{item.title}</h3>
+                  </div>
+                </AccordionSummary>
+
+                <AccordionDetails className="pf-accordion-details">
+                  <p className="portfolio__item-desc">{item.description}</p>
+
+                  {item.tech && item.tech.length > 0 && (
+                    <div className="pf-tech-list">
+                      {item.tech.map((t, i) => (
+                        <span className="tech-pill" key={i}>
+                          {t}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+
+                  <div className="pf-accordion-actions">
+                    {item.github && (
+                      <a
+                        href={item.github}
+                        target="_blank"
+                        rel="noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                        className="btn"
+                        aria-label={`${item.title} GitHub`}
+                      >
+                        <FaGithub />&nbsp;Code
+                      </a>
+                    )}
+
+                    {item.demo && (
+                      <a
+                        href={item.demo}
+                        target="_blank"
+                        rel="noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                        className="btn btn-primary"
+                        aria-label={`${item.title} Demo`}
+                      >
+                        <FaExternalLinkAlt />&nbsp;Live Demo
+                      </a>
+                    )}
+                  </div>
+                </AccordionDetails>
+              </Accordion>
+            );
+          }
+
+          // Desktop / Tablet: Clean card layout without modal
+          return (
+            <article key={item.id} className="portfolio__item">
+              <div className="portfolio__item-image">
                 <img src={item.image} alt={item.title} />
               </div>
 
-              <h3 className="portfolio__item-title">{item.title}</h3>
-
-              <div className="portfolio__item-cta">
-                {item.github && (
-                  <a
-                    href={item.github}
-                    className="btn"
-                    target="_blank"
-                    rel="noreferrer"
-                    aria-label={`${item.title} GitHub`}
-                    onClick={(e) => e.stopPropagation()}
-                  >
-                    <FaGithub />&nbsp;Code
-                  </a>
-                )}
-
-                {item.demo && (
-                  <a
-                    href={item.demo}
-                    className="btn"
-                    target="_blank"
-                    rel="noreferrer"
-                    aria-label={`${item.title} Live Demo`}
-                    onClick={(e) => e.stopPropagation()}
-                  >
-                    Live Demo
-                  </a>
-                )}
-
-                {/* Desktop: open modal; Mobile: toggle accordion */}
-                <button
-                  className="btn view-btn"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    if (isMobile) toggleMobile(item.id);
-                    else openModal(item);
-                  }}
-                  aria-expanded={isMobile ? isExpanded : modalItem?.id === item.id}
-                >
-                  {isMobile ? (isExpanded ? "Hide" : "Show Details") : "View Details"}
-                </button>
-              </div>
-
-              {/* details — visible on desktop and when accordion expanded on mobile */}
-              <div
-                className={`portfolio__item-details ${isMobile && !isExpanded ? "hidden" : ""}`}
-                aria-hidden={isMobile && !isExpanded}
-              >
-                <h4>{item.title}</h4>
+              <div className="portfolio__item-content">
+                <h3>{item.title}</h3>
                 <p className="portfolio__item-desc">{item.description}</p>
+
+                {item.tech && item.tech.length > 0 && (
+                  <div className="portfolio__tech-stack">
+                    {item.tech.map((t, i) => (
+                      <span className="tech-badge" key={i}>
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                )}
+
+                <div className="portfolio__item-cta">
+                  {item.github && (
+                    <a 
+                      href={item.github} 
+                      className="btn" 
+                      target="_blank" 
+                      rel="noreferrer" 
+                      aria-label={`${item.title} GitHub`}
+                    >
+                      <FaGithub />&nbsp;Code
+                    </a>
+                  )}
+                  {item.demo && (
+                    <a 
+                      href={item.demo} 
+                      className="btn btn-primary" 
+                      target="_blank" 
+                      rel="noreferrer" 
+                      aria-label={`${item.title} Live Demo`}
+                    >
+                      <FaExternalLinkAlt />&nbsp;Live Demo
+                    </a>
+                  )}
+                </div>
               </div>
             </article>
           );
         })}
       </div>
-
-      {/* Modal for desktop */}
-      {modalItem && (
-        <div className="portfolio-modal" role="dialog" aria-modal="true" aria-labelledby={`modal-${modalItem.id}-title`}>
-          <div className="portfolio-modal__backdrop" onClick={() => setModalItem(null)} />
-          <div className="portfolio-modal__panel">
-            <button className="modal-close" onClick={() => setModalItem(null)} aria-label="Close details">
-              <FaTimes />
-            </button>
-
-            <div className="modal-image">
-              <img src={modalItem.image} alt={modalItem.title} />
-            </div>
-
-            <div className="modal-body">
-              <h3 id={`modal-${modalItem.id}-title`}>{modalItem.title}</h3>
-              <p>{modalItem.description}</p>
-
-              <div className="modal-cta">
-                {modalItem.github && (
-                  <a href={modalItem.github} className="btn" target="_blank" rel="noreferrer">View Code</a>
-                )}
-                {modalItem.demo && (
-                  <a href={modalItem.demo} className="btn" target="_blank" rel="noreferrer">Live Demo</a>
-                )}
-                <button className="btn btn-ghost" onClick={() => setModalItem(null)}>Close</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
     </section>
   );
 };
