@@ -12,7 +12,7 @@
 
 :root {
   /* Default Dark Theme */
-  --color-bg: #1e1e2f;
+  --color-bg: #1C1C1C;
   --color-bg-variant: #2d2d44;
   --color-primary: #7f5af0;
   --color-primary-variant: rgba(127, 90, 240, 0.4);
@@ -21,7 +21,8 @@
 
   /* Dark mode background image & gradient */
   --bg-image: url(../src/assets/bg-texture.png);
-  --bg-gradient: linear-gradient(135deg, rgba(127, 90, 240, 0.1) 0%, rgba(30, 30, 47, 0.9) 100%);
+--bg-gradient: linear-gradient(135deg, #0d0d1a 0%, #1a1a2e 50%, #2d2d44 100%);
+
 
   --transition: all 400ms ease;
 
