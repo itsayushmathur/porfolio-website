@@ -1,8 +1,12 @@
 import React from "react";
 import "./about.css";
-import ME from "../../assets/me-about.jpg";
+import IMG1 from "../../assets/shh.png";
+import IMG3 from "../../assets/shh2.png";
+import IMG2 from "../../assets/me-about.jpg";
+import IMG4 from "../../assets/shh3.png";
 import { FaAward } from "react-icons/fa";
 import { VscFolderLibrary } from "react-icons/vsc";
+import ImageCarousel from "./ImageCarousel";
 
 const About = () => {
   return (
@@ -13,7 +17,11 @@ const About = () => {
       <div className="about__container container">
         <div className="about__me">
           <div className="about__me-image">
-            <img src={ME} alt="About Me" />
+            <ImageCarousel
+              images={[IMG1, IMG2, IMG3, IMG4]}
+              interval={3000}
+              altPrefix="About"
+            />
           </div>
         </div>
 

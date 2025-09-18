@@ -1,33 +1,22 @@
-/* about.css
-   Converted from styled-components -> classic CSS
-   Mobile-first fixes, hover-disabled-on-touch, and Google-like touches.
-*/
-
-/* Optional: import Roboto (Google-like) for this component only.
-   For consistent typography across the app, add the Google font link to index.html instead.
-*/
 
 .about-section {
-  /* Keep desktop padding consistent with previous design,
-     but allow override in mobile below */
   padding: 2rem 6rem;
   font-family: "Roboto", sans-serif;
 }
 
-/* Basic headings inside this component */
 .about-section .subheading {
   color: var(--color-light);
   text-align: center;
   margin-bottom: 0.25rem;
   font-weight: 400;
 }
+
 .about-section .heading {
   color: var(--color-primary);
   text-align: center;
   margin-bottom: 2rem;
 }
 
-/* Container grid matches previous layout */
 .about__container {
   display: grid;
   grid-template-columns: 35% 60%;
@@ -53,15 +42,146 @@
   transition: transform 300ms ease;
   width: 100%;
   height: 100%;
+  position: relative;
+  /* for absolute controls inside */
 }
+
+.about__me-image:hover {
+  transform: rotate(0deg) scale(1.03);
+  cursor: pointer;
+  box-shadow: 0 10px 24px rgba(11, 13, 20, 0.06);
+}
+
+/* Keep original img rule for fallback */
 .about__me-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
   display: block;
 }
 
-/* Cards (right column top) */
+/* ---------- CAROUSEL rules (new / replacement) ---------- */
+
+/* carousel root sits inside about__me-image */
+.carousel {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  display: block;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* number of slides: --n, current index: --i */
+.slides {
+  display: flex;
+  height: 100%;
+  /* width is n * 100% so the slides element equals total width of slides */
+  width: calc(var(--n) * 100%);
+  transition: transform 600ms cubic-bezier(.22, .9, .32, 1);
+  /* translateX moves by: -100% * i / n -> results in -i * (carousel width) */
+  transform: translateX(calc(-100% * var(--i) / var(--n)));
+  will-change: transform;
+}
+
+/* each slide is 1/n of slides width -> equals carousel width */
+.slide {
+  flex: 0 0 calc(100% / var(--n));
+  height: 100%;
+  display: block;
+  box-sizing: border-box;
+}
+
+/* ensure image completely fills slide area without overflowing or jitter */
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* use 'cover' for full-bleed visuals; switch to 'contain' if you prefer no cropping */
+  object-position: center;
+  display: block;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* Controls (prev/next) overlay */
+.carousel-controls {
+  position: absolute;
+  inset: 0;
+  /* top:0; right:0; bottom:0; left:0; */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  pointer-events: none;
+  /* allow buttons to be styled with pointer-events enabled individually */
+}
+
+.carousel-btn {
+  pointer-events: auto;
+  border: none;
+  background: rgba(11, 13, 20, 0.5);
+  color: white;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: inline-grid;
+  place-items: center;
+  margin: 0 10px;
+  cursor: pointer;
+  transition: transform 150ms ease, background 150ms ease, opacity 150ms ease;
+  opacity: 0.9;
+  backdrop-filter: blur(4px);
+}
+
+.carousel-btn:hover {
+  transform: scale(1.05);
+  background: rgba(11, 13, 20, 0.65);
+}
+
+.carousel-btn:active {
+  transform: scale(0.98);
+}
+
+/* position prev/next slightly inset from edges */
+.carousel-btn.prev {
+  margin-left: 12px;
+}
+
+.carousel-btn.next {
+  margin-right: 12px;
+}
+
+/* Dots */
+.carousel-dots {
+  position: absolute;
+  left: 50%;
+  bottom: 10px;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  pointer-events: auto;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.55);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: transform 120ms ease, background 120ms ease;
+}
+
+.dot:hover {
+  transform: scale(1.15);
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.dot.active {
+  background: var(--color-primary);
+  transform: scale(1.25);
+}
+
+/* ---------- rest of your styles (unchanged) ---------- */
+
 .about__cards {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -76,19 +196,18 @@
   padding: 1.4rem;
   text-align: center;
   transition: box-shadow 250ms ease, transform 250ms ease, border-color 250ms ease;
-  box-shadow: 0 6px 18px rgba(11, 13, 20, 0.04); /* subtle elevation */
+  box-shadow: 0 6px 18px rgba(11, 13, 20, 0.04);
 }
 
 .about__card:active {
   transform: translateY(1px);
 }
 
-/* Keep pointer affordance for clickable elements */
 .about__card:hover {
   border-color: var(--color-primary-variant);
   cursor: pointer;
   transform: translateY(-6px);
-  box-shadow: 0 10px 24px rgba(11,13,20,0.06);
+  box-shadow: 0 10px 24px rgba(11, 13, 20, 0.06);
 }
 
 .about__icon {
@@ -96,16 +215,17 @@
   font-size: 1.4rem;
   margin-bottom: 0.6rem;
 }
+
 .about__card h5 {
   font-size: 0.95rem;
   margin: 0.15rem 0;
 }
+
 .about__card small {
   font-size: 0.75rem;
   color: var(--color-light);
 }
 
-/* Description + CTA */
 .about__description {
   margin: 2rem 0 2.6rem;
   color: var(--color-light);
@@ -113,7 +233,6 @@
   text-align: left;
 }
 
-/* Button */
 .about__btn {
   display: inline-block;
   padding: 0.75rem 1.2rem;
@@ -123,17 +242,17 @@
   text-decoration: none;
   transition: background 220ms ease, transform 220ms ease;
 }
-.about__btn:hover { background: var(--color-primary-variant); }
 
-/* ========== MOBILE / TABLET ADJUSTMENTS ========== */
-/* Medium devices — tablet */
+.about__btn:hover {
+  background: var(--color-primary-variant);
+}
+
 @media screen and (max-width: 1024px) {
   .about__container {
     grid-template-columns: 1fr;
     gap: 0;
   }
 
-  /* make the image smaller and centered */
   .about__me {
     width: 50%;
     margin: 2rem auto 4rem;
@@ -141,14 +260,13 @@
 
   .about__description {
     margin: 2rem 2rem 1.5rem;
-    text-align: center; /* center description on mid screens for better legibility */
+    text-align: center;
   }
 }
 
-/* Small devices — phones */
 @media screen and (max-width: 600px) {
   .about-section {
-    padding: 1.5rem 1rem; /* reduce wide padding that caused overflow */
+    padding: 1.5rem 1rem;
   }
 
   .about__me {
@@ -169,32 +287,12 @@
     margin: 1.5rem 0;
   }
 
-  /* Slightly smaller cards/padding for phones */
   .about__card {
     padding: 1rem;
   }
-
-  /* Reduce hover translations on small devices (we'll disable hover on touch below) */
-  /* .about__card:hover {
-    transform: none;
-    box-shadow: 0 6px 14px rgba(11,13,20,0.04);
-  } */
 }
 
-/* Disable hover transforms on touch devices (keeps tap behavior stable) */
-/* @media (hover: none) and (pointer: coarse) {
-  .about__me-image,
-  .about__card {
-    transform: none !important;
-    transition: none !important;
-  }
-  .about__card:hover {
-    transform: none;
-    box-shadow: 0 6px 18px rgba(11,13,20,0.04);
-  }
-} */
-
-/* Accessibility / small visuals */
-.about__card h5, .about__card small { user-select: none; }
-
-/* End of about.css */
+.about__card h5,
+.about__card small {
+  user-select: none;
+}
